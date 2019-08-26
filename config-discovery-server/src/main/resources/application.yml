@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    config:
+      server:
+        prefix: config
+        git:
+          uri: https://github.com/raulcarlin/configs.git
+          searchPaths: gameshop-netflix
+          username:
+          password:
+        native:
+          searchLocations: classpath:offline-repository/
+
+eureka:
+  datacenter: saopaulo
+  enviroment: dev
+  server:
+    enableSelfPreservation: false
+  instance:
+    hostname: discovery-primary
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

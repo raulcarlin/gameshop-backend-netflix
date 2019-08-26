@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: api-carts
+  cloud:
+    config:
+      uri: http://localhost:8081/config

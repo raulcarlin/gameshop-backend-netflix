@@ -1,0 +1,6 @@
+rootProject.name = 'gameshop-backend-netflix'
+include 'api-carts'
+include 'api-users'
+include 'auth-gateway-server'
+include 'config-discovery-server'
+

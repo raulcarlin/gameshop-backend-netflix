@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: auth-gateway-server
+  cloud:
+    config:
+      uri: http://localhost:8081/config

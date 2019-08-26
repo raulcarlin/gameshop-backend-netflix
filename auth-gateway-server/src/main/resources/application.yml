@@ -1,0 +1,25 @@
+zuul:
+  prefix: /api
+  ignoredServices: 'config-discovery-server'
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+
+spring:
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gameshop?useTimezone=true&serverTimezone=America/Sao_Paulo
+    username:
+    password:
+
+  jpa:
+    show_sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 8080
+

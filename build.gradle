@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.1.3.RELEASE')
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group 'com.gameshop'
+    version '0.0.1'
+
+    sourceCompatibility = 1.8
+
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-web')
+//        implementation('org.springframework.boot:spring-boot-starter-tomcat')
+        implementation('org.springframework.cloud:spring-cloud-starter-config')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+        implementation('org.projectlombok:lombok')
+        implementation('io.jsonwebtoken:jjwt:0.9.1')
+        
+        implementation('org.glassfish.jaxb:jaxb-runtime')
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testCompile('junit:junit:4.12')
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1'
+        }
+    }
+}
+
+project(':auth-gateway-server') {
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+        implementation('org.springframework.boot:spring-boot-starter-security')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+        implementation('mysql:mysql-connector-java')
+    }
+}
+
+project(':config-discovery-server') {
+    dependencies {
+        implementation('org.springframework.cloud:spring-cloud-config-server')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+    }
+}
+
+project(':api-users') {
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+        implementation('mysql:mysql-connector-java')
+    }
+}
+
+project(':api-carts') {
+    dependencies {
+        implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+        implementation('org.springframework.cloud:spring-cloud-starter-netflix-turbine')
+    }
+}
